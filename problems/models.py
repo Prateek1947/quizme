@@ -1,7 +1,7 @@
 import datetime
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 
 # Create your models here.
@@ -18,9 +18,10 @@ class Problem(models.Model):
     title = models.CharField(max_length=20, unique=True)
     statement = models.TextField()
     no_of_solvers = models.IntegerField(default=0)
-    tag = models.ManyToManyField(Tag, related_name='problems')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='contributions')
-    solvers = models.ManyToManyField(User, related_name='solves')
+    tags = models.ManyToManyField(Tag, related_name='problems')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True,
+                               related_name='contributions')
+    solvers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='solves')
     solved = models.BooleanField(default=False)
 
     def __str__(self):
