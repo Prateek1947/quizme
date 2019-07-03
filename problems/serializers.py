@@ -28,6 +28,7 @@ class ProblemsListSerializer(serializers.ModelSerializer):
     no_of_solvers = serializers.IntegerField(read_only=True)
     answer = serializers.CharField(max_length=128, write_only=True)
     solved = serializers.BooleanField(read_only=True)
+    author = serializers.StringRelatedField()
 
     class Meta:
         model = Problem
