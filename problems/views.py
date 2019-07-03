@@ -1,4 +1,3 @@
-from django.shortcuts import get_object_or_404
 from .serializers import *
 from rest_framework.views import APIView
 from rest_framework import status
@@ -19,6 +18,10 @@ class ProblemList(APIView):
 
     def get(self, request):
         problems = models.Problem.objects.all()
+        if request.user.is_authenticated:
+            for problem in problems:
+                if problem in request.user.solves.all():
+                    problem.solved = True
         serializer = ProblemsListSerializer(problems, many=True)
         return Response(serializer.data)
 
@@ -40,6 +43,9 @@ class ProblemDetail(APIView):
 
     def get(self, request, pk):
         prob = self.get_object(pk)
+        if request.user.is_authenticated:
+            if prob in request.user.solves.all():
+                prob.solved = True
         self.check_object_permissions(request, prob)
         serializer = ProblemDetailSerializer(prob)
         return Response(serializer.data, status.HTTP_200_OK)
