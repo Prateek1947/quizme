@@ -14,6 +14,7 @@ class ProblemDetailSerializer(serializers.ModelSerializer):
     tags = serializers.SlugRelatedField(slug_field='title', many=True, read_only=True)
     author = serializers.SlugRelatedField(slug_field='username', read_only=True)
     solvers = serializers.SlugRelatedField(slug_field='username', many=True, read_only=True)
+    solved = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = Problem
@@ -25,7 +26,9 @@ class ProblemsListSerializer(serializers.ModelSerializer):
     solvers = serializers.SlugRelatedField(slug_field='username', many=True, read_only=True)
     statement = serializers.CharField(write_only=True)
     no_of_solvers = serializers.IntegerField(read_only=True)
+    answer = serializers.CharField(max_length=128, write_only=True)
+    solved = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = Problem
-        fields = ('id', 'title', 'no_of_solvers', 'tags', 'solved', 'solvers', 'author', 'statement')
+        fields = ('id', 'title', 'no_of_solvers', 'tags', 'solved', 'solvers', 'author', 'statement', 'answer')
