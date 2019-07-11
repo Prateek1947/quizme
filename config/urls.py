@@ -25,4 +25,3 @@ urlpatterns = [
     path('api/users/', include('user.urls')),
     path('api/submission/', include('submission.urls'))
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
