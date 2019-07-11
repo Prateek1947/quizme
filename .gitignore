@@ -3,3 +3,4 @@ db.sqlite3
 AddModels.py
 media/
 staticfiles/
+.env

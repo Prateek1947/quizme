@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'problems.apps.ProblemsConfig',
     'user.apps.UserConfig',
-    'submission.apps.SubmissionConfig'
+    'submission.apps.SubmissionConfig',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR + '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
+AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY')
+AZURE_CONTAINER = os.environ.get('AZURE_CONTAINER')
