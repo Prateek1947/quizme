@@ -97,7 +97,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -108,7 +107,6 @@ AUTH_USER_MODEL = 'user.User'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Media files
 DEFAULT_FILE_STORAGE = 'config.storages.MediaStorage'
