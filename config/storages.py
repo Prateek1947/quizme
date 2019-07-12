@@ -4,7 +4,7 @@ import os
 
 class StaticStorage(AzureStorage):
     overwrite_files = True
-    azure_container = 'static-dev'
+    azure_container = 'static'
 
 
 class MediaStorage(AzureStorage):
